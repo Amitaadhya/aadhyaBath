@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Happy Bath - Aadhya</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -104,17 +104,27 @@
             background-color: var(--light);
             color: var(--dark);
             line-height: 1.6;
+            background-image: linear-gradient(to bottom, #eff8ff, #ffffff);
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1rem;
             position: relative;
             z-index: 1;
             background: rgba(247, 247, 247, 0.8);
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 95%;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem;
+                width: 100%;
+                border-radius: 0;
+            }
         }
         
         header {
@@ -125,7 +135,20 @@
         }
         
         .logo {
-            font-size: 2.5rem;
+            font-size: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            .profile-name {
+                font-size: 1.8rem;
+            }
+            .profile-bio {
+                font-size: 0.95rem;
+            }
+        }
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 1rem;
@@ -163,6 +186,13 @@
         .profile-image {
             width: 100%;
             max-width: 400px;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-image {
+                max-width: 100%;
+            }
+        }
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -185,22 +215,42 @@
         }
         
         .profile-name {
-            font-size: 2rem;
+            font-size: 2.2rem;
             color: var(--dark);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .profile-name-wrapper {
             position: relative;
             display: inline-block;
         }
         
-        .profile-name:after {
+        .profile-name-wrapper:after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
             height: 3px;
-            background: var(--primary);
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+        
+        .profile-name-icon {
+            color: var(--secondary);
+            font-size: 1.8rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
         
         .profile-location {
@@ -270,13 +320,169 @@
             transform: translateY(-3px);
         }
         
-        .watermark {
+        /* Blessings section */
+        .blessings-container {
             margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .blessings-title {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
             text-align: center;
-            color: #aaa;
-            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .blessing-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(72,177,191,0.1);
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .blessing-author {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .bath-date {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: var(--secondary);
+        }
+        
+        .rating-section {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .star-rating {
+            font-size: 2rem;
+            color: #ccc;
+            cursor: pointer;
+        }
+        
+        .star-rating .fa-star.selected {
+            color: gold;
+        }
+        
+        #rating-gift {
+            margin-top: 1rem;
+            min-height: 50px;
+        }
+        
+        .blessing-text {
+            color: #555;
+            padding-left: 28px;
+        }
+        .fa-birthday-cake {
+            color: var(--secondary);
+            margin-right: 5px;
         }
 
+        .gift-animation {
+            animation: bounce 1s;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-15px);}
+            60% {transform: translateY(-7px);}
+        }
+        
+        .watermark {
+            margin-top: 2rem;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.8rem;
+            padding: 0.5rem;
+        }
+
+        .blessing-form {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(255,255,255,0.98);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(72,177,191,0.2);
+        }
+        
+        .blessing-form.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .form-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .form-header i {
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group i {
+            position: absolute;
+            top: 12px;
+            left: 15px;
+            color: var(--primary);
+        }
+        
+        .blessing-form h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
         .salutation-btn-container {
             margin-top: 1.5rem;
             text-align: center;
@@ -415,7 +621,12 @@
     </div>
     <div class="container">
         <header>
-            <div class="logo">Happy <span>Bath</span></div>
+            <div class="logo">
+                Happy <span>Bath</span>
+                <div class="bath-date">
+                    <i class="fas fa-calendar-alt"></i> Date: 15/08/2024
+                </div>
+            </div>
             <p class="tagline">Celebrating Life's Beautiful Moments</p>
         </header>
         
@@ -425,7 +636,11 @@
             </div>
             
             <div class="profile-info">
-                <h1 class="profile-name">Aadhya Chaudhary</h1>
+                <h1 class="profile-name">
+                    <i class="fa-solid fa-bath profile-name-icon"></i>
+                    <span class="profile-name-wrapper">Aadhya Chaudhary</span>
+                    <i class="fa-solid fa-soap profile-name-icon"></i>
+                </h1>
                 <div class="profile-location">
                     <i class="fas fa-map-marker-alt"></i>
                     <span>Gurugram</span>
@@ -436,29 +651,66 @@
 
                 <div class="family-members">
                     <div class="family-member">
-                        <i class="fas fa-male"></i>
+                        <i class="fas fa-user-tie"></i>
                         <span class="bold">Papa:</span> Amit Chaudhary
                     </div>
                     <div class="family-member">
-                        <i class="fas fa-female"></i>
+                        <i class="fas fa-user-nurse"></i>
                         <span class="bold">Maa:</span> Neha Chaudhary
                     </div>
                 </div>
                 
                 <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                    <a href="#" class="social-link"><i class="fas fa-bath"></i></a>
+                    <a href="#" class="social-link"><i class="fas fa-soap"></i></a>
+                    <a href="#" class="social-link"><i class="fas fa-hand-sparkles"></i></a>
+                    <a href="#" class="social-link"><i class="fas fa-spa"></i></a>
                 </div>
 
                 <div class="salutation-btn-container">
-                    <button class="salutation-btn">
+                    <button id="showBlessingBtn" class="salutation-btn">
                         <i class="fas fa-heart"></i> Show Blessings
-                        <div class="ripple"></div>
                     </button>
                 </div>
+                <div class="blessing-form" id="blessingForm" style="display:none;">
+                    <div class="form-header">
+                        <i class="fas fa-bath"></i>
+                        <h3>Send Your Blessings</h3>
+                    </div>
+                    <form id="blessingFormData">
+                        <div class="form-group">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <i class="fas fa-comment-alt"></i>
+                            <textarea id="message" placeholder="Your Blessing Message" required></textarea>
+                        </div>
+                        <button type="submit" class="salutation-btn">
+                            <i class="fas fa-paper-plane"></i> Send Blessing
+                        </button>
+                    </form>
+                </div>
 
+                </div>
+
+                <div class="rating-section">
+                    <h3><i class="fas fa-star"></i> Rate This Celebration</h3>
+                    <div class="star-rating">
+                        <i class="fas fa-star" data-rating="1"></i>
+                        <i class="fas fa-star" data-rating="2"></i>
+                        <i class="fas fa-star" data-rating="3"></i>
+                        <i class="fas fa-star" data-rating="4"></i>
+                        <i class="fas fa-star" data-rating="5"></i>
+                    </div>
+                    <div id="rating-gift"></div>
+                </div>
+                
+                <div class="blessings-container">
+                    <h3 class="blessings-title">
+                        <i class="fas fa-birthday-cake"></i> Recent Blessings (10)
+                    </h3>
+                    <div id="blessingsList"></div>
                 </div>
         </main>
         
@@ -467,20 +719,157 @@
         </div>
     </div>
 
+    <!-- Add EmailJS library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-        // Add ripple effect to salutation button
-        document.querySelector('.salutation-btn').addEventListener('click', function(e) {
-            let ripple = this.querySelector('.ripple');
-            ripple.style.left = `${e.offsetX}px`;
-            ripple.style.top = `${e.offsetY}px`;
-            ripple.classList.remove('ripple');
-            void ripple.offsetWidth; // Trigger reflow
-            ripple.classList.add('ripple');
-            
-            // Show blessings in alert (can be replaced with modal)
+        // Initialize EmailJS
+        emailjs.init('YOUR_EMAILJS_USER_ID');
+        
+        // Handle blessing button click
+        document.getElementById('showBlessingBtn').addEventListener('click', function() {
+            const form = document.getElementById('blessingForm');
+            form.style.display = 'block';
             setTimeout(() => {
-                alert("May you be blessed with:\n\n✨ Happiness \n✨ Good Health \n✨ Prosperity \n✨ Success");
-            }, 600);
+                form.classList.add('active');
+            }, 10);
+            this.style.display = 'none';
+        });
+        
+        // Store blessings in localStorage
+        function saveBlessing(name, message) {
+            let blessings = JSON.parse(localStorage.getItem('happyBathBlessings') || '[]');
+            blessings.push({name, message, date: new Date().toLocaleString()});
+            localStorage.setItem('happyBathBlessings', JSON.stringify(blessings));
+            return blessings;
+        }
+
+        // Display blessings
+        function showBlessings() {
+            let blessings = JSON.parse(localStorage.getItem('happyBathBlessings') || '[]');
+            let html = '';
+            blessings.reverse().forEach(blessing => {
+                html += `
+                <div class="blessing-item">
+                    <div class="blessing-author">
+                        <i class="fas fa-user-circle"></i>
+                        ${blessing.name}
+                        <span style="font-size:0.8rem;color:#888;margin-left:auto;">
+                            ${blessing.date}
+                        </span>
+                    </div>
+                    <div class="blessing-text">${blessing.message}</div>
+                </div>
+                `;
+            });
+            if (html === '') {
+                html = `
+                <div class="blessing-item">
+                    <div class="blessing-author">
+                        <i class="fas fa-user-circle"></i> Priya Sharma
+                        <span style="font-size:0.8rem;color:#888;margin-left:auto;">
+                            <i class="fas fa-birthday-cake"></i> 2 min ago
+                        </span>
+                    </div>
+                    <div class="blessing-text">Many happy returns of the day Aadhya! May your special day be filled with joy, love and cake!</div>
+                </div>
+                <div class="blessing-item">
+                    <div class="blessing-author">
+                        <i class="fas fa-user-circle"></i> Rahul Verma
+                        <span style="font-size:0.8rem;color:#888;margin-left:auto;">
+                            <i class="fas fa-birthday-cake"></i> 15 min ago
+                        </span>
+                    </div>
+                    <div class="blessing-text">Wishing you a year blessed with success, good health and happiness!</div>
+                </div>
+                <div class="blessing-item">
+                    <div class="blessing-author">
+                        <i class="fas fa-user-circle"></i> Neha Patel
+                        <span style="font-size:0.8rem;color:#888;margin-left:auto;">
+                            <i class="fas fa-birthday-cake"></i> 1 hour ago
+                        </span>
+                    </div>
+                    <div class="blessing-text">May your birthday be as wonderful and special as you are!</div>
+                </div>
+                <div class="blessing-item">
+                    <div class="blessing-author">
+                        <i class="fas fa-user-circle"></i> Amit Singh
+                        <span style="font-size:0.8rem;color:#888;margin-left:auto;">
+                            <i class="fas fa-birthday-cake"></i> 3 hours ago
+                        </span>
+                    </div>
+                    <div class="blessing-text">Here's to another year of amazing adventures and beautiful memories!</div>
+                </div>
+                <div class="blessing-item">
+                    <div class="blessing-author">
+                        <i class="fas fa-user-circle"></i> Anita Kumar
+                        <span style="font-size:0.8rem;color:#888;margin-left:auto;">
+                            <i class="fas fa-birthday-cake"></i> 5 hours ago
+                        </span>
+                    </div>
+                    <div class="blessing-text">May your day be sprinkled with happiness and sweet surprises!</div>
+                </div>`;
+            }
+            document.getElementById('blessingsList').innerHTML = html;
+        }
+
+        // Initialize with saved blessings
+        showBlessings();
+        
+        // Rating system
+        const stars = document.querySelectorAll('.star-rating .fa-star');
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = parseInt(this.dataset.rating);
+                
+                // Update star display
+                stars.forEach((s, i) => {
+                    if (i < rating) {
+                        s.classList.add('selected');
+                    } else {
+                        s.classList.remove('selected');
+                    }
+                });
+                
+                // Show gift based on rating
+                let gift = '';
+                if (rating === 1) {
+                    gift = '<div class="gift-animation"><i class="fas fa-birthday-cake"></i> Thank you for 1 star!</div>';
+                } else if (rating === 2) {
+                    gift = '<div class="gift-animation"><i class="fas fa-gift"></i> Thanks for 2 stars! Mini gift for you!</div>';
+                }
+                // etc for higher ratings
+                
+                document.getElementById('rating-gift').innerHTML = gift;
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('blessingFormData').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const blessings = saveBlessing(name, message);
+            showBlessings();
+            
+            emailjs.send('happy_bath_service', 'blessing_template', {
+                from_name: name,
+                message: message,
+                to_email: 'aminehu@zohomail.in'
+            })
+            .then(() => {
+                alert('Your blessing has been shared successfully!');
+                document.getElementById('blessingFormData').reset();
+            }, (error) => {
+                console.error('Failed to send:', error);
+                // Still saved locally even if email fails
+            });
         });
     </script>
 </body>
