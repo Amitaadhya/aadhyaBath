@@ -207,6 +207,47 @@
         .close:hover {
             color: black;
         }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background-color: #4ade80;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        .toast.error {
+            background-color: #f87171;
+        }
+        
+        .import-status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        
+        .import-status.success {
+            background-color: #dcfce7;
+            color: #166534;
+            display: block;
+        }
+        
+        .import-status.error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            display: block;
+        }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center py-8 px-4">
@@ -217,7 +258,7 @@
                 <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-100 mb-4">
                     <i class="fas fa-chart-line text-blue-600 text-2xl"></i>
                 </div>
-                <h1 class="text-3xl font-bold text-gray-800">Sales Portal</h1>
+                <h1 class="text-3xl font-bold text-gray-800">Quince Revenue</h1>
                 <p class="text-gray-600 mt-2">Sign in to your account</p>
             </div>
             
@@ -276,7 +317,7 @@
                         <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center mr-3">
                             <i class="fas fa-chart-pie text-white"></i>
                         </div>
-                        <span class="text-xl font-bold text-blue-800">SalesPortal</span>
+                        <span class="text-xl font-bold text-blue-800">Quince Revenue</span>
                     </div>
                     
                     <nav class="space-y-2">
@@ -310,7 +351,7 @@
                         <div class="bg-blue-50 rounded-lg p-4 border border-blue-100">
                             <h3 class="font-medium text-blue-800">Need help?</h3>
                             <p class="text-sm text-blue-600 mt-1">Contact our support team</p>
-                            <p class="text-xs text-blue-500 mt-2">support@salesportal.com</p>
+                            <p class="text-xs text-blue-500 mt-2">amit@gmail.com</p>
                         </div>
                     </div>
                 </div>
@@ -321,7 +362,7 @@
                     <div class="glass-effect p-6 mb-6 flex justify-between items-center">
                         <div>
                             <h1 class="text-2xl font-bold text-gray-800" id="pageTitle">Dashboard</h1>
-                            <p class="text-gray-600" id="pageSubtitle">Welcome back, Admin! Here's your analytics report.</p>
+                            <p class="text-gray-600" id="pageSubtitle">Welcome back, AMit Chaudhary! Here's your analytics report.</p>
                         </div>
                         <div class="flex items-center">
                             <div class="mr-4 relative">
@@ -344,39 +385,39 @@
                                     <div class="flex justify-between items-center">
                                         <div>
                                             <h3 class="text-gray-600">Gross Sales</h3>
-                                            <p class="text-2xl font-bold mt-1">$42,845</p>
+                                            <p class="text-2xl font-bold mt-1" id="totalGrossSales">$0</p>
                                         </div>
                                         <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
                                             <i class="fas fa-dollar-sign text-blue-600"></i>
                                         </div>
                                     </div>
-                                    <p class="text-sm text-green-600 mt-2"><i class="fas fa-arrow-up"></i> 12.5% from last month</p>
+                                    <p class="text-sm text-green-600 mt-2"><i class="fas fa-arrow-up"></i> <span id="grossSalesChange">0%</span> from last month</p>
                                 </div>
                                 
                                 <div class="summary-card glass-effect p-6">
                                     <div class="flex justify-between items-center">
                                         <div>
-                                            <h3 class="text-gray-600">Net Due</h3>
-                                            <p class="text-2xl font-bold mt-1">$28,452</p>
+                                            <h3 class="text-gray-600">Net Due Amount</h3>
+                                            <p class="text-2xl font-bold mt-1" id="totalNetDue">$0</p>
                                         </div>
                                         <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
                                             <i class="fas fa-hand-holding-usd text-green-600"></i>
                                         </div>
                                     </div>
-                                    <p class="text-sm text-green-600 mt-2"><i class="fas fa-arrow-up"></i> 8.3% from last month</p>
+                                    <p class="text-sm text-green-600 mt-2"><i class="fas fa-arrow-up"></i> <span id="netDueChange">0%</span> from last month</p>
                                 </div>
                                 
                                 <div class="summary-card glass-effect p-6">
                                     <div class="flex justify-between items-center">
                                         <div>
                                             <h3 class="text-gray-600">Chargebacks</h3>
-                                            <p class="text-2xl font-bold mt-1">$1,254</p>
+                                            <p class="text-2xl font-bold mt-1" id="totalChargebacks">$0</p>
                                         </div>
                                         <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center">
                                             <i class="fas fa-exchange-alt text-red-600"></i>
                                         </div>
                                     </div>
-                                    <p class="text-sm text-red-600 mt-2"><i class="fas fa-arrow-down"></i> 3.2% from last month</p>
+                                    <p class="text-sm text-red-600 mt-2"><i class="fas fa-arrow-down"></i> <span id="chargebacksChange">0%</span> from last month</p>
                                 </div>
                             </div>
                             
@@ -401,49 +442,22 @@
                             <div class="glass-effect p-6 mb-8">
                                 <div class="flex justify-between items-center mb-6">
                                     <h3 class="font-bold text-gray-800">Recent Transactions</h3>
-                                    <button class="text-blue-600 text-sm font-medium">View All</button>
+                                    <button class="text-blue-600 text-sm font-medium" id="viewAllBtn">View All</button>
                                 </div>
                                 
                                 <div class="overflow-x-auto">
-                                    <table class="w-full">
+                                    <table class="w-full" id="recentTransactions">
                                         <thead>
                                             <tr class="text-left text-gray-600 text-sm">
                                                 <th class="pb-3">Unit</th>
                                                 <th class="pb-3">Month</th>
                                                 <th class="pb-3">Gross Sales</th>
-                                                <th class="pb-3">Net Due</th>
+                                                <th class="pb-3">Net Due Amount</th>
                                                 <th class="pb-3">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-gray-100">
-                                            <tr>
-                                                <td class="py-3">Noida</td>
-                                                <td class="py-3">June 2023</td>
-                                                <td class="py-3">$12,458</td>
-                                                <td class="py-3">$8,452</td>
-                                                <td class="py-3"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Completed</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="py-3">Gurugram</td>
-                                                <td class="py-3">June 2023</td>
-                                                <td class="py-3">$8,652</td>
-                                                <td class="py-3">$5,841</td>
-                                                <td class="py-3"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Completed</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="py-3">Delhi</td>
-                                                <td class="py-3">June 2023</td>
-                                                <td class="py-3">$10,457</td>
-                                                <td class="py-3">$7,254</td>
-                                                <td class="py-3"><span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">Pending</span></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="py-3">Noida</td>
-                                                <td class="py-3">May 2023</td>
-                                                <td class="py-3">$11,352</td>
-                                                <td class="py-3">$7,854</td>
-                                                <td class="py-3"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Completed</span></td>
-                                            </tr>
+                                            <!-- Recent transactions will be populated here -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -466,9 +480,7 @@
                                                 <option value="">Select Unit</option>
                                                 <option value="Noida">Noida</option>
                                                 <option value="Gurugram">Gurugram</option>
-                                                <option value="Delhi">Delhi</option>
-                                                <option value="Bangalore">Bangalore</option>
-                                                <option value="Hyderabad">Hyderabad</option>
+                                                <option value="Delhi">Amit</option>
                                             </select>
                                         </div>
                                         
@@ -653,6 +665,7 @@
                                             <input type="file" id="importFile" class="hidden" accept=".xlsx,.xls,.csv">
                                         </label>
                                     </div>
+                                    <div id="importStatus" class="import-status"></div>
                                 </div>
                             </div>
                             
@@ -764,6 +777,11 @@
         </div>
     </div>
 
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <span id="toastMessage">Operation completed successfully!</span>
+    </div>
+
     <script>
         // DOM Elements
         const loginScreen = document.getElementById('loginScreen');
@@ -781,7 +799,20 @@
         const viewRecordModal = document.getElementById('viewRecordModal');
         const recordDetails = document.getElementById('recordDetails');
         const closeModal = document.querySelector('.close');
+        const toast = document.getElementById('toast');
+        const toastMessage = document.getElementById('toastMessage');
+        const viewAllBtn = document.getElementById('viewAllBtn');
+        const recentTransactions = document.getElementById('recentTransactions');
+        const importStatus = document.getElementById('importStatus');
         
+        // Dashboard elements
+        const totalGrossSales = document.getElementById('totalGrossSales');
+        const totalNetDue = document.getElementById('totalNetDue');
+        const totalChargebacks = document.getElementById('totalChargebacks');
+        const grossSalesChange = document.getElementById('grossSalesChange');
+        const netDueChange = document.getElementById('netDueChange');
+        const chargebacksChange = document.getElementById('chargebacksChange');
+
         // Form fields for net due calculation
         const grossSales = document.getElementById('grossSales');
         const chargeback = document.getElementById('chargeback');
@@ -790,18 +821,70 @@
         const productCost = document.getElementById('productCost');
         const netDueAmount = document.getElementById('netDueAmount');
         
-        // Sample data for records
-        let recordsData = [
-            { unitName: 'Noida', monthName: 'June 2023', soldQuantity: '120', grossSales: '12458', chargeback: '500', prepayment: '1000', wrongStickers: '200', productCost: '3000', netDueAmount: '8452' },
-            { unitName: 'Gurugram', monthName: 'June 2023', soldQuantity: '85', grossSales: '8652', chargeback: '300', prepayment: '800', wrongStickers: '150', productCost: '2500', netDueAmount: '5841' },
-            { unitName: 'Delhi', monthName: 'June 2023', soldQuantity: '105', grossSales: '10457', chargeback: '400', prepayment: '900', wrongStickers: '180', productCost: '2800', netDueAmount: '7254' },
-            { unitName: 'Noida', monthName: 'May 2023', soldQuantity: '110', grossSales: '11352', chargeback: '450', prepayment: '950', wrongStickers: '220', productCost: '3200', netDueAmount: '7854' }
-        ];
+        // Records data (will be loaded from localStorage)
+        let recordsData = [];
         
         // Check if user is already logged in
         if (localStorage.getItem('isLoggedIn') === 'true') {
             showApp();
+            loadRecordsFromStorage();
             loadRecords();
+            updateDashboard();
+        }
+        
+        // Load records from localStorage
+        function loadRecordsFromStorage() {
+            const storedData = localStorage.getItem('salesRecords');
+            if (storedData) {
+                recordsData = JSON.parse(storedData);
+            } else {
+                // Sample data if no records exist
+                recordsData = [
+                    { unitName: 'Noida', monthName: 'June 2023', soldQuantity: '120', grossSales: '12458', chargeback: '500', prepayment: '1000', wrongStickers: '200', productCost: '3000', netDueAmount: '8452' },
+                    { unitName: 'Gurugram', monthName: 'June 2023', soldQuantity: '85', grossSales: '8652', chargeback: '300', prepayment: '800', wrongStickers: '150', productCost: '2500', netDueAmount: '5841' },
+                    { unitName: 'Delhi', monthName: 'June 2023', soldQuantity: '105', grossSales: '10457', chargeback: '400', prepayment: '900', wrongStickers: '180', productCost: '2800', netDueAmount: '7254' },
+                    { unitName: 'Noida', monthName: 'May 2023', soldQuantity: '110', grossSales: '11352', chargeback: '450', prepayment: '950', wrongStickers: '220', productCost: '3200', netDueAmount: '7854' }
+                ];
+                saveRecordsToStorage();
+            }
+        }
+        
+        // Save records to localStorage
+        function saveRecordsToStorage() {
+            localStorage.setItem('salesRecords', JSON.stringify(recordsData));
+        }
+        
+        // Show toast notification
+        function showToast(message, isError = false) {
+            toastMessage.textContent = message;
+            toast.classList.remove('error');
+            
+            if (isError) {
+                toast.classList.add('error');
+            }
+            
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Show import status
+        function showImportStatus(message, isError = false) {
+            importStatus.textContent = message;
+            importStatus.classList.remove('success', 'error');
+            
+            if (isError) {
+                importStatus.classList.add('error');
+            } else {
+                importStatus.classList.add('success');
+            }
+            
+            setTimeout(() => {
+                importStatus.classList.remove('success', 'error');
+                importStatus.textContent = '';
+            }, 5000);
         }
         
         // Login form submission
@@ -820,9 +903,12 @@
                     sessionStorage.setItem('isLoggedIn', 'true');
                 }
                 showApp();
+                loadRecordsFromStorage();
                 loadRecords();
+                updateDashboard();
+                showToast('Login successful!');
             } else {
-                alert('Invalid credentials. Please use admin/admin');
+                showToast('Invalid credentials. Please use admin/admin', true);
             }
         });
         
@@ -831,6 +917,7 @@
             localStorage.removeItem('isLoggedIn');
             sessionStorage.removeItem('isLoggedIn');
             showLogin();
+            showToast('Logged out successfully');
         });
         
         // Navigation
@@ -852,9 +939,24 @@
                     // Load records if records page is selected
                     if (pageId === 'records') {
                         loadRecords();
+                    } else if (pageId === 'dashboard') {
+                        updateDashboard();
                     }
                 });
             }
+        });
+        
+        // View all records
+        viewAllBtn.addEventListener('click', function() {
+            // Switch to records page
+            navItems.forEach(navItem => {
+                navItem.classList.remove('active');
+                if (navItem.getAttribute('data-page') === 'records') {
+                    navItem.classList.add('active');
+                }
+            });
+            showPage('records');
+            loadRecords();
         });
         
         // Calculate net due amount when values change
@@ -873,7 +975,7 @@
             
             // Validate required fields
             if (!unitName || !monthName || !grossSales.value) {
-                alert('Please fill in all required fields');
+                showToast('Please fill in all required fields', true);
                 return;
             }
             
@@ -881,7 +983,7 @@
             const newRecord = {
                 unitName: unitName,
                 monthName: monthName,
-                soldQuantity: soldQuantity,
+                soldQuantity: soldQuantity || '0',
                 grossSales: grossSales.value,
                 chargeback: chargeback.value || '0',
                 prepayment: prepayment.value || '0',
@@ -893,8 +995,11 @@
             // Add to records data
             recordsData.push(newRecord);
             
+            // Save to localStorage
+            saveRecordsToStorage();
+            
             // Show success message
-            alert('Data saved successfully!');
+            showToast('Data saved successfully!');
             
             // Reset form
             this.reset();
@@ -903,6 +1008,11 @@
             // If on records page, reload records
             if (document.getElementById('records').classList.contains('active')) {
                 loadRecords();
+            }
+            
+            // Update dashboard if visible
+            if (document.getElementById('dashboard').classList.contains('active')) {
+                updateDashboard();
             }
         });
         
@@ -961,11 +1071,13 @@
             
             // Filter records based on search term
             const filteredRecords = recordsData.filter(record => {
+                if (!searchTerm) return true;
+                
                 return (
-                    record.unitName.toLowerCase().includes(searchTerm) ||
-                    record.monthName.toLowerCase().includes(searchTerm) ||
-                    record.grossSales.includes(searchTerm) ||
-                    record.netDueAmount.includes(searchTerm)
+                    (record.unitName && record.unitName.toLowerCase().includes(searchTerm)) ||
+                    (record.monthName && record.monthName.toLowerCase().includes(searchTerm)) ||
+                    (record.grossSales && record.grossSales.toString().includes(searchTerm)) ||
+                    (record.netDueAmount && record.netDueAmount.toString().includes(searchTerm))
                 );
             });
             
@@ -976,11 +1088,11 @@
             filteredRecords.forEach((record, index) => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${record.unitName}</td>
-                    <td>${record.monthName}</td>
-                    <td>${record.soldQuantity}</td>
-                    <td>$${record.grossSales}</td>
-                    <td>$${record.netDueAmount}</td>
+                    <td>${record.unitName || ''}</td>
+                    <td>${record.monthName || ''}</td>
+                    <td>${record.soldQuantity || ''}</td>
+                    <td>$${record.grossSales || ''}</td>
+                    <td>$${record.netDueAmount || ''}</td>
                     <td>
                         <button class="text-blue-600 hover:text-blue-800 mr-2 view-btn" data-index="${index}">
                             <i class="fas fa-eye"></i>
@@ -1022,21 +1134,69 @@
             });
         }
         
+        // Update dashboard with latest data
+        function updateDashboard() {
+            // Calculate totals
+            let grossSalesTotal = 0;
+            let netDueTotal = 0;
+            let chargebacksTotal = 0;
+            
+            recordsData.forEach(record => {
+                grossSalesTotal += parseFloat(record.grossSales) || 0;
+                netDueTotal += parseFloat(record.netDueAmount) || 0;
+                chargebacksTotal += parseFloat(record.chargeback) || 0;
+            });
+            
+            // Update dashboard values
+            totalGrossSales.textContent = `$${grossSalesTotal.toLocaleString()}`;
+            totalNetDue.textContent = `$${netDueTotal.toLocaleString()}`;
+            totalChargebacks.textContent = `$${chargebacksTotal.toLocaleString()}`;
+            
+            // Calculate changes (random for demo)
+            grossSalesChange.textContent = `${(Math.random() * 15).toFixed(1)}%`;
+            netDueChange.textContent = `${(Math.random() * 12).toFixed(1)}%`;
+            chargebacksChange.textContent = `${(Math.random() * 5).toFixed(1)}%`;
+            
+            // Update recent transactions
+            updateRecentTransactions();
+        }
+        
+        // Update recent transactions table
+        function updateRecentTransactions() {
+            const tbody = recentTransactions.querySelector('tbody');
+            tbody.innerHTML = '';
+            
+            // Get last 5 records
+            const recentRecords = recordsData.slice(-5);
+            
+            recentRecords.forEach(record => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="py-3">${record.unitName || ''}</td>
+                    <td class="py-3">${record.monthName || ''}</td>
+                    <td class="py-3">$${record.grossSales || ''}</td>
+                    <td class="py-3">$${record.netDueAmount || ''}</td>
+                    <td class="py-3"><span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">Completed</span></td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+        
         // View record details
         function viewRecord(index) {
             const record = recordsData[index];
             
             recordDetails.innerHTML = `
                 <div class="grid grid-cols-2 gap-4">
-                    <div><strong>Unit Name:</strong></div><div>${record.unitName}</div>
-                    <div><strong>Month Name:</strong></div><div>${record.monthName}</div>
-                    <div><strong>Sold Quantity:</strong></div><div>${record.soldQuantity}</div>
-                    <div><strong>Gross Sales:</strong></div><div>$${record.grossSales}</div>
-                    <div><strong>Chargeback:</strong></div><div>$${record.chargeback}</div>
-                    <div><strong>Prepayment:</strong></div><div>$${record.prepayment}</div>
-                    <div><strong>Wrong Stickers:</strong></div><div>$${record.wrongStickers}</div>
-                    <div><strong>Product Cost:</strong></div><div>$${record.productCost}</div>
-                    <div><strong>Net Due Amount:</strong></div><div>$${record.netDueAmount}</div>
+                    <div><strong>Unit Name:</strong></div><div>${record.unitName || ''}</div>
+                    <div><strong>Month Name:</strong></div><div>${record.monthName || ''}</div>
+                    <div><strong>Sold Quantity:</strong></div><div>${record.soldQuantity || ''}</div>
+                    <div><strong>Gross Sales:</strong></div><div>$${record.grossSales || ''}</div>
+                    <div><strong>Chargeback:</strong></div><div>$${record.chargeback || ''}</div>
+                    <div><strong>Prepayment:</strong></div><div>$${record.prepayment || ''}</div>
+                    <div><strong>Wrong Stickers:</strong></div><div>$${record.wrongStickers || ''}</div>
+                    <div><strong>Product Cost:</strong></div><div>$${record.productCost || ''}</div>
+                    <div><strong>Net Due Amount:</strong></div><div>$${record.netDueAmount || ''}</div>
                 </div>
             `;
             
@@ -1045,17 +1205,43 @@
         
         // Edit record
         function editRecord(index) {
-            // For simplicity, we'll just alert which record to edit
-            alert(`Edit functionality would open for record ${index}`);
-            // In a real application, you would populate the data entry form with this record's data
+            const record = recordsData[index];
+            
+            // Populate the form with record data
+            document.getElementById('unitName').value = record.unitName || '';
+            document.getElementById('monthName').value = record.monthName || '';
+            document.getElementById('soldQuantity').value = record.soldQuantity || '';
+            document.getElementById('grossSales').value = record.grossSales || '';
+            document.getElementById('chargeback').value = record.chargeback || '';
+            document.getElementById('prepayment').value = record.prepayment || '';
+            document.getElementById('wrongStickers').value = record.wrongStickers || '';
+            document.getElementById('productCost').value = record.productCost || '';
+            document.getElementById('netDueAmount').value = record.netDueAmount || '';
+            
+            // Switch to data entry page
+            navItems.forEach(navItem => {
+                navItem.classList.remove('active');
+                if (navItem.getAttribute('data-page') === 'dataEntry') {
+                    navItem.classList.add('active');
+                }
+            });
+            showPage('dataEntry');
+            
+            // Delete the old record
+            recordsData.splice(index, 1);
+            saveRecordsToStorage();
+            
+            showToast('Record loaded for editing');
         }
         
         // Delete record
         function deleteRecord(index) {
             if (confirm('Are you sure you want to delete this record?')) {
                 recordsData.splice(index, 1);
+                saveRecordsToStorage();
                 loadRecords();
-                alert('Record deleted successfully!');
+                updateDashboard();
+                showToast('Record deleted successfully!');
             }
         }
         
@@ -1070,7 +1256,7 @@
             
             // Generate Excel file and trigger download
             XLSX.writeFile(wb, 'sales_data.xlsx');
-            alert('Data exported to Excel successfully!');
+            showToast('Data exported to Excel successfully!');
         }
         
         // Export to CSV
@@ -1081,15 +1267,15 @@
             
             recordsData.forEach(record => {
                 const row = [
-                    record.unitName,
-                    record.monthName,
-                    record.soldQuantity,
-                    record.grossSales,
-                    record.chargeback,
-                    record.prepayment,
-                    record.wrongStickers,
-                    record.productCost,
-                    record.netDueAmount
+                    record.unitName || '',
+                    record.monthName || '',
+                    record.soldQuantity || '',
+                    record.grossSales || '',
+                    record.chargeback || '',
+                    record.prepayment || '',
+                    record.wrongStickers || '',
+                    record.productCost || '',
+                    record.netDueAmount || ''
                 ];
                 csvData.push(row.join(','));
             });
@@ -1105,7 +1291,7 @@
             link.click();
             document.body.removeChild(link);
             
-            alert('Data exported to CSV successfully!');
+            showToast('Data exported to CSV successfully!');
         }
         
         // Download template
@@ -1132,7 +1318,7 @@
             
             // Generate Excel file and trigger download
             XLSX.writeFile(wb, 'sales_data_template.xlsx');
-            alert('Template downloaded successfully!');
+            showToast('Template downloaded successfully!');
         }
         
         // Import file
@@ -1149,16 +1335,41 @@
                     const worksheet = workbook.Sheets[workbook.SheetNames[0]];
                     const jsonData = XLSX.utils.sheet_to_json(worksheet);
                     
+                    // Validate imported data
+                    const validatedData = jsonData.map(item => {
+                        return {
+                            unitName: item['Unit Name'] || item['unitName'] || '',
+                            monthName: item['Month Name'] || item['monthName'] || '',
+                            soldQuantity: item['Sold Quantity'] || item['soldQuantity'] || '0',
+                            grossSales: item['Gross Sales'] || item['grossSales'] || '0',
+                            chargeback: item['Chargeback'] || item['chargeback'] || '0',
+                            prepayment: item['Prepayment'] || item['prepayment'] || '0',
+                            wrongStickers: item['Wrong Stickers'] || item['wrongStickers'] || '0',
+                            productCost: item['Product Cost'] || item['productCost'] || '0',
+                            netDueAmount: item['Net Due Amount'] || item['netDueAmount'] || '0'
+                        };
+                    });
+                    
                     // Add imported data to records
-                    recordsData = recordsData.concat(jsonData);
+                    recordsData = recordsData.concat(validatedData);
+                    
+                    // Save to localStorage
+                    saveRecordsToStorage();
                     
                     // Reload records
                     loadRecords();
+                    updateDashboard();
                     
-                    alert('Data imported successfully!');
+                    showImportStatus('Data imported successfully!');
+                    showToast('Data imported successfully!');
                 } catch (error) {
-                    alert('Error importing file: ' + error.message);
+                    showImportStatus('Error importing file: ' + error.message, true);
+                    showToast('Error importing file: ' + error.message, true);
                 }
+            };
+            reader.onerror = function() {
+                showImportStatus('Error reading file', true);
+                showToast('Error reading file', true);
             };
             reader.readAsArrayBuffer(file);
         }
@@ -1288,13 +1499,16 @@
         }
         
         // Initialize the app
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentContentLoaded', function() {
             // Add fade-in animation to elements
             const elements = document.querySelectorAll('.glass-effect, .summary-card');
             elements.forEach((element, index) => {
                 element.style.animationDelay = `${index * 0.1}s`;
                 element.classList.add('fade-in');
             });
+            
+            // Load records from storage
+            loadRecordsFromStorage();
         });
     </script>
 </body>
